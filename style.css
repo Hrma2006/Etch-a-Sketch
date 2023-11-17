@@ -55,13 +55,13 @@ button {
 }
 .grid {
   background-color: black;
-	width: 500px;
-	height: 500px;
+	width: 700px;
+	height: 700px;
 	display: grid;
 	grid-template-columns: repeat(2, 2fr);
 }
 .pixel {
 	background-color: lightblue;
-	border: .25px solid rgb(0, 0, 0);
+	border: .1px solid rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 }
