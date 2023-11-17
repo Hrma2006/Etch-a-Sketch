@@ -55,14 +55,15 @@ button{
 .grid{
   display: flex;
   flex-wrap: wrap;
-  width: 600px;
-  height: 600px;
+  justify-content:stretch;
+  width: 500px;
+  height: 500px;
   background-color: black;
 }
 .pixel{
+  width: 250px;
+  height: 250px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: .5px solid rgb(40, 40, 40);
   background-color: aliceblue;
-  width: 300px;
-  height: 300px;
 }
