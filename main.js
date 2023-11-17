@@ -11,17 +11,9 @@ function draw(size) {
 		div.setAttribute("class", "pixel");
 		grid.appendChild(div);
 	}
-  console.log(size)
-	scale(size);
+	grid.style.gridTemplateColumns=`repeat(${size}, ${size}fr`
 }
-function scale(num) {
-	const pixels = document.querySelectorAll(".pixel");
-	let length = parseFloat((500 / num).toFixed(10))
-	pixels.forEach((pixel) => {
-		pixel.style.width = `${length}px`;
-		pixel.style.height = `${length}px`;
-	});
-}
+
 size.addEventListener("input",()=> {
   clear();
   draw(size.valueAsNumber);
