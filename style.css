@@ -1,69 +1,67 @@
-:root{
-  --small:24px;
-  --medium:48px;
-  --large:96px;
+:root {
+	--small: 24px;
+	--medium: 48px;
+	--large: 96px;
 }
-*{
-  padding: 0;
-  margin: 0;
-  border: none;
+* {
+	padding: 0;
+	margin: 0;
+	border: none;
 }
-body{
-  font-family: "Pixelify Sans",'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-} 
+body {
+	font-family: "Pixelify Sans", "Franklin Gothic Medium", "Arial Narrow", Arial,
+		sans-serif;
+}
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--medium);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--medium);
 }
-.title{
-  padding: var(--small);
-  font-size: var(--medium);
+.title {
+	padding: var(--small);
+	font-size: var(--medium);
 }
 .wrapper {
-  min-width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--large);
+	min-width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--large);
 }
-.options{
-  background-color: cornflowerblue;
-  padding: var(--medium);
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--medium);
+.options {
+	background-color: cornflowerblue;
+	padding: var(--medium);
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--medium);
 }
-button{
-  font-size: var(--small);
-  background-color: aqua;
-  width: 100%;
-  height: auto;
+button {
+	font-size: var(--small);
+	background-color: aqua;
+	width: 100%;
+	height: auto;
 }
-.size-wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.size-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
-.grid{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content:stretch;
-  width: 500px;
-  height: 500px;
+.grid {
   background-color: black;
+	width: 500px;
+	height: 500px;
+	display: grid;
+	grid-template-columns: repeat(2, 2fr);
 }
-.pixel{
-  width: 250px;
-  height: 250px;
-  box-sizing: border-box;
-  border: .5px solid rgb(40, 40, 40);
-  background-color: aliceblue;
+.pixel {
+	background-color: lightblue;
+	border: .25px solid rgb(0, 0, 0);
+	box-sizing: border-box;
 }
