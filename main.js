@@ -27,3 +27,24 @@ buttons.forEach(button=>{
 		console.log(state)
 	})
 })
+
+const pixels=document.querySelectorAll(".pixel")
+let isMouseDown=false
+pixels.forEach(pixel=>{
+	pixel.addEventListener("mousedown",()=>{
+		isMouseDown=true;
+		console.log("clicked")
+	})
+})
+pixels.forEach(pixel=>{
+	pixel.addEventListener("mouseup",()=>{
+		isMouseDown=false
+	})
+})
+pixels.forEach(pixel=>{
+	pixel.addEventListener("mouseover",(e)=>{
+		if(isMouseDown){
+			
+		}
+	})
+})
