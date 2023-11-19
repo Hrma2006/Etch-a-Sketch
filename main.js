@@ -39,6 +39,17 @@ size.addEventListener("input",()=> {
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
 // a variable to know what to do when starting to draw
 let state=''
 
@@ -56,12 +67,13 @@ colorSelector.addEventListener("input",()=>{
 })
 
 
-// a function to paint that takes the state and a color as an input
-function paint(color,state){
+// a function to paint
+function paint(){
 	let isMouseDown=false
 	pixels.forEach(pixel=>{
 		pixel.addEventListener("mousedown",(e)=>{
 			isMouseDown=true;
+			if(state=="color"){e.target.style.backgroundColor=`${selectedColor}`}
 		})
 	})
 	pixels.forEach(pixel=>{
@@ -72,7 +84,7 @@ function paint(color,state){
 	pixels.forEach(pixel=>{
 		pixel.addEventListener("mouseover",(e)=>{
 			if(isMouseDown){
-				e.target.style.backgroundColor="black";
+				if(state=="color"){e.target.style.backgroundColor=`${selectedColor}`}
 			}
 		})
 	})
