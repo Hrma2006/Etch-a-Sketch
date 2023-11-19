@@ -15,7 +15,13 @@ function makeGrid(size) {
 	}
 	grid.style.gridTemplateColumns=`repeat(${size}, ${size}fr`
 }
-
+let pixels=document.querySelectorAll(".pixel")
+function initialize(){
+	makeGrid(size.valueAsNumber);
+	pixels=document.querySelectorAll(".pixel")
+	paint()
+}
+initialize()
 size.addEventListener("input",()=> {
   clear();
   makeGrid(size.valueAsNumber);
@@ -29,8 +35,7 @@ buttons.forEach(button=>{
 		state=e.target.className
 	})
 })
-let pixels=document.querySelectorAll(".pixel")
-function paint(color){
+function paint(color,state){
 	let isMouseDown=false
 	pixels.forEach(pixel=>{
 		pixel.addEventListener("mousedown",(e)=>{
