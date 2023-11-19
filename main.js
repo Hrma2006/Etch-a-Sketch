@@ -44,7 +44,7 @@ size.addEventListener("input", () => {
 });
 
 // a variable to know what to do when starting to draw
-let state = "";
+let state = "color";
 
 //change the state according to the class of the pressed button
 buttons.forEach((button) => {
