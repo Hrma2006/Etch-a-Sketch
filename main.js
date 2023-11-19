@@ -76,6 +76,8 @@ function paint() {
 				e.target.style.backgroundColor = `${selectedColor}`;
 			} else if (state == "erase") {
 				e.target.style.backgroundColor = `#ffffff`;
+			} else if (state == "fill") {
+				fillPixels();
 			}
 		});
 	});
@@ -94,5 +96,10 @@ function paint() {
 				}
 			}
 		});
+	});
+}
+function fillPixels() {
+	pixels.forEach((pixel) => {
+		pixel.style.backgroundColor = `${selectedColor}`;
 	});
 }
