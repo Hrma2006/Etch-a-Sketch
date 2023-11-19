@@ -2,7 +2,8 @@ const grid = document.querySelector(".grid");
 const size = document.querySelector("#size");
 const buttons=document.querySelectorAll("button")
 let pixels=document.querySelectorAll(".pixel")
-
+let colorSelector=document.querySelector("#color-selector")
+let selectedColor;
 
 function clear(){
   grid.textContent = '';
@@ -20,6 +21,7 @@ function makeGrid(size) {
 
 // a function called on the load of the page to make it work
 function initialize(){
+	selectedColor=colorSelector.value;
 	makeGrid(size.valueAsNumber);
 	pixels=document.querySelectorAll(".pixel")
 	paint()
@@ -36,6 +38,7 @@ size.addEventListener("input",()=> {
 	paint()
 })
 
+
 // a variable to know what to do when starting to draw
 let state=''
 
@@ -46,6 +49,12 @@ buttons.forEach(button=>{
 	})
 })
 
+// an event listener to change the selected color when you enter a new color
+colorSelector.addEventListener("input",()=>{
+	selectedColor=colorSelector.value
+	console.log(selectedColor)
+})
+
 
 // a function to paint that takes the state and a color as an input
 function paint(color,state){
@@ -53,8 +62,6 @@ function paint(color,state){
 	pixels.forEach(pixel=>{
 		pixel.addEventListener("mousedown",(e)=>{
 			isMouseDown=true;
-			e.target.style.backgroundColor="black"
-			console.log("clicked")
 		})
 	})
 	pixels.forEach(pixel=>{
