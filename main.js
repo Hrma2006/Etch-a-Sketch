@@ -78,6 +78,8 @@ function paint() {
 				e.target.style.backgroundColor = `#ffffff`;
 			} else if (state == "fill") {
 				fillPixels();
+			} else if (state == "rainbow") {
+				e.target.style.backgroundColor = generateColor();
 			}
 		});
 	});
@@ -93,6 +95,8 @@ function paint() {
 					e.target.style.backgroundColor = `${selectedColor}`;
 				} else if (state == "erase") {
 					e.target.style.backgroundColor = `#ffffff`;
+				} else if (state == "rainbow") {
+					e.target.style.backgroundColor = generateColor();
 				}
 			}
 		});
