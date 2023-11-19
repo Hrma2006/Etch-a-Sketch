@@ -103,3 +103,12 @@ function fillPixels() {
 		pixel.style.backgroundColor = `${selectedColor}`;
 	});
 }
+function generateColor() {
+	let letters = "ABCDEF1234567890";
+	let color = ["#"];
+	for (let i = 0; i <= 5; i++) {
+		let rand = Math.floor(Math.random() * 16);
+		color[i + 1] = letters[rand];
+	}
+	return color.join("");
+}
