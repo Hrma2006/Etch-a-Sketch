@@ -44,6 +44,7 @@ body {
 button {
 	font-size: var(--small);
 	background-color: aqua;
+	border-radius:5px ;
 	width: 100%;
 	height: auto;
 }
