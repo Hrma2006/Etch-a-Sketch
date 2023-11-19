@@ -7,7 +7,7 @@ function clear(){
   grid.textContent = '';
 }
 
-function draw(size) {
+function makeGrid(size) {
 	for (let num = 0; num < size ** 2; num++) {
 		const div = document.createElement("div");
 		div.setAttribute("class", "pixel");
@@ -18,7 +18,7 @@ function draw(size) {
 
 size.addEventListener("input",()=> {
   clear();
-  draw(size.valueAsNumber);
+  makeGrid(size.valueAsNumber);
 	pixels=document.querySelectorAll(".pixel")
 	paint()
 })
@@ -33,8 +33,9 @@ let pixels=document.querySelectorAll(".pixel")
 function paint(color){
 	let isMouseDown=false
 	pixels.forEach(pixel=>{
-		pixel.addEventListener("mousedown",()=>{
+		pixel.addEventListener("mousedown",(e)=>{
 			isMouseDown=true;
+			e.target.style.backgroundColor="black"
 			console.log("clicked")
 		})
 	})
