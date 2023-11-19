@@ -4,7 +4,7 @@ const buttons = document.querySelectorAll("button");
 let pixels = document.querySelectorAll(".pixel");
 let colorSelector = document.querySelector("#color-selector");
 let selectedColor;
-let sizeViewer=document.querySelector("p")
+let sizeViewer = document.querySelector("p");
 
 function clear() {
 	grid.textContent = "";
@@ -19,13 +19,13 @@ function makeGrid(size) {
 	}
 	grid.style.gridTemplateColumns = `repeat(${size}, ${size}fr`;
 }
-function changeSizeViewer(size){
-	sizeViewer.innerText=size+" X "+size
+function changeSizeViewer(size) {
+	sizeViewer.innerText = size + " X " + size;
 }
 // a function called on the load of the page to make it work
 function initialize() {
 	selectedColor = colorSelector.value;
-	changeSizeViewer(size.value)
+	changeSizeViewer(size.value);
 	makeGrid(size.valueAsNumber);
 	pixels = document.querySelectorAll(".pixel");
 	paint();
@@ -36,7 +36,7 @@ initialize();
 //added an event listener to detect ant change to the size
 size.addEventListener("input", () => {
 	clear();
-	changeSizeViewer(size.value)
+	changeSizeViewer(size.value);
 	makeGrid(size.valueAsNumber);
 	//called pixels again to update it
 	pixels = document.querySelectorAll(".pixel");
@@ -74,6 +74,8 @@ function paint() {
 			isMouseDown = true;
 			if (state == "color") {
 				e.target.style.backgroundColor = `${selectedColor}`;
+			} else if (state == "erase") {
+				e.target.style.backgroundColor = `#ffffff`;
 			}
 		});
 	});
@@ -87,6 +89,8 @@ function paint() {
 			if (isMouseDown) {
 				if (state == "color") {
 					e.target.style.backgroundColor = `${selectedColor}`;
+				} else if (state == "erase") {
+					e.target.style.backgroundColor = `#ffffff`;
 				}
 			}
 		});
