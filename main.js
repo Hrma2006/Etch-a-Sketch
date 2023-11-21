@@ -46,62 +46,8 @@ size.addEventListener("input", () => {
 // a variable to know what to do when starting to draw
 let state = "color";
 
-//change the state according to the class of the pressed button
-buttons.forEach((button) => {
-	button.addEventListener("click", (e) => {
-		state = e.target.className;
-		noButtonSelected();
-		e.target.style.backgroundColor = "blue";
-	});
-});
-
-function noButtonSelected() {
-	buttons.forEach((button) => {
-		button.style.backgroundColor = "aqua";
-	});
-}
-// an event listener to change the selected color when you enter a new color
-colorSelector.addEventListener("input", () => {
-	selectedColor = colorSelector.value;
-	console.log(selectedColor);
-});
-
 // a function to paint
-function paint() {
-	let isMouseDown = false;
-	pixels.forEach((pixel) => {
-		pixel.addEventListener("mousedown", (e) => {
-			isMouseDown = true;
-			if (state == "color") {
-				e.target.style.backgroundColor = `${selectedColor}`;
-			} else if (state == "erase") {
-				e.target.style.backgroundColor = `#ffffff`;
-			} else if (state == "fill") {
-				fillPixels();
-			} else if (state == "rainbow") {
-				e.target.style.backgroundColor = generateColor();
-			}
-		});
-	});
-	pixels.forEach((pixel) => {
-		pixel.addEventListener("mouseup", () => {
-			isMouseDown = false;
-		});
-	});
-	pixels.forEach((pixel) => {
-		pixel.addEventListener("mouseover", (e) => {
-			if (isMouseDown) {
-				if (state == "color") {
-					e.target.style.backgroundColor = `${selectedColor}`;
-				} else if (state == "erase") {
-					e.target.style.backgroundColor = `#ffffff`;
-				} else if (state == "rainbow") {
-					e.target.style.backgroundColor = generateColor();
-				}
-			}
-		});
-	});
-}
+
 function fillPixels() {
 	pixels.forEach((pixel) => {
 		pixel.style.backgroundColor = `${selectedColor}`;
