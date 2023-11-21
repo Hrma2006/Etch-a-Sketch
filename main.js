@@ -5,7 +5,11 @@ let pixels = document.querySelectorAll(".pixel");
 let colorSelector = document.querySelector("#color-selector");
 let selectedColor;
 let sizeViewer = document.querySelector("p");
-
+const colorButton=document.querySelector(".color")
+const shadeButton=document.querySelector(".shade")
+const rainbowButton=document.querySelector(".color")
+const fillButton=document.querySelector(".color")
+const clearButton=document.querySelector(".color")
 function clear() {
 	grid.textContent = "";
 }
