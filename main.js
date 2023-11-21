@@ -5,11 +5,11 @@ let pixels = document.querySelectorAll(".pixel");
 let colorSelector = document.querySelector("#color-selector");
 let selectedColor;
 let sizeViewer = document.querySelector("p");
-const colorButton=document.querySelector(".color")
-const shadeButton=document.querySelector(".shade")
-const rainbowButton=document.querySelector(".color")
-const fillButton=document.querySelector(".color")
-const clearButton=document.querySelector(".color")
+const colorButton = document.querySelector(".color");
+const shadeButton = document.querySelector(".shade");
+const rainbowButton = document.querySelector(".color");
+const fillButton = document.querySelector(".color");
+const clearButton = document.querySelector(".color");
 function clear() {
 	grid.textContent = "";
 }
@@ -48,10 +48,15 @@ size.addEventListener("input", () => {
 // a variable to know what to do when starting to draw
 let state = "color";
 
-colorButton.addEventListener('click',()=>{
-	state="color"
-	selectedColor=colorSelector.value
-})
+colorButton.addEventListener("click", () => {
+	state = "color";
+	selectedColor = colorSelector.value;
+});
+
+rainbowButton.addEventListener("click", () => {
+	state = "rainbow";
+	selectedColor = generateColor();
+});
 
 function fillPixels() {
 	pixels.forEach((pixel) => {
@@ -68,9 +73,9 @@ function generateColor() {
 	return color.join("");
 }
 
-function clearAll(){
-pixels.forEach((pixel)=>{
-	pixel.style.backgroundColor= "#ffffff"
-})
-state=''
+function clearAll() {
+	pixels.forEach((pixel) => {
+		pixel.style.backgroundColor = "#ffffff";
+	});
+	state = "";
 }
