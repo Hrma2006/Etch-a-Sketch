@@ -33,6 +33,7 @@ function initialize() {
 	changeSizeViewer(size.value);
 	makeGrid(size.valueAsNumber);
 	pixels = document.querySelectorAll(".pixel");
+	paint()
 }
 //called the function
 initialize();
@@ -40,10 +41,7 @@ initialize();
 //added an event listener to detect ant change to the size
 size.addEventListener("input", () => {
 	clear();
-	changeSizeViewer(size.value);
-	makeGrid(size.valueAsNumber);
-	//called pixels again to update it
-	pixels = document.querySelectorAll(".pixel");
+	initialize()
 });
 
 // a variable to know what to do when starting to draw
@@ -70,6 +68,37 @@ eraseButton.addEventListener('click',()=>{
 clearButton.addEventListener('click',()=>{
 	clearAll();
 })
+function paint(){
+	let isMouseDown = false;
+		pixels.forEach((pixel) => {
+			pixel.addEventListener("mousedown", (e) => {
+				isMouseDown = true;
+				if(state=='fill'){fillPixels()}
+				else if(state=='rainbow'){selectedColor=generateColor()}
+				e.target.style.backgroundColor=`${selectedColor}`
+			});
+		});
+		pixels.forEach((pixel) => {
+			pixel.addEventListener("mouseup", () => {
+				isMouseDown = false;
+			});
+		});
+		pixels.forEach((pixel) => {
+			pixel.addEventListener("mouseover", (e) => {
+				if (isMouseDown) {
+					if (state == "color") {
+						e.target.style.backgroundColor = `${selectedColor}`;
+					} else if (state == "erase") {
+						e.target.style.backgroundColor = `#ffffff`;
+					} else if (state == "rainbow") {
+						e.target.style.backgroundColor = generateColor();
+					}
+				}
+			});
+		});
+}
+
+
 function fillPixels() {
 	pixels.forEach((pixel) => {
 		pixel.style.backgroundColor = `${selectedColor}`;
