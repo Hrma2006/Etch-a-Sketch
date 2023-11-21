@@ -116,3 +116,10 @@ function generateColor() {
 	}
 	return color.join("");
 }
+
+function clearAll(){
+pixels.forEach((pixel)=>{
+	pixel.style.backgroundColor= "#ffffff"
+})
+state=''
+}
