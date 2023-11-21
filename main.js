@@ -8,7 +8,7 @@ let sizeViewer = document.querySelector("p");
 const colorButton = document.querySelector(".color");
 const shadeButton = document.querySelector(".shade");
 const rainbowButton = document.querySelector(".rainbow");
-const eraseButton=document.querySelector(".erase")
+const eraseButton = document.querySelector(".erase");
 const fillButton = document.querySelector(".fill");
 const clearButton = document.querySelector(".clear");
 function clear() {
@@ -59,6 +59,10 @@ rainbowButton.addEventListener("click", () => {
 	selectedColor = generateColor();
 });
 
+fillButton.addEventListener("click", () => {
+	state = "fill";
+	selectedColor = colorSelector.value;
+});
 function fillPixels() {
 	pixels.forEach((pixel) => {
 		pixel.style.backgroundColor = `${selectedColor}`;
