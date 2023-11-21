@@ -67,6 +67,9 @@ eraseButton.addEventListener('click',()=>{
 	state='erase'
 	selectedColor='#ffffff'
 })
+clearButton.addEventListener('click',()=>{
+	clearAll();
+})
 function fillPixels() {
 	pixels.forEach((pixel) => {
 		pixel.style.backgroundColor = `${selectedColor}`;
