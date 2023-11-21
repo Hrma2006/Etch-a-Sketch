@@ -7,9 +7,10 @@ let selectedColor;
 let sizeViewer = document.querySelector("p");
 const colorButton = document.querySelector(".color");
 const shadeButton = document.querySelector(".shade");
-const rainbowButton = document.querySelector(".color");
-const fillButton = document.querySelector(".color");
-const clearButton = document.querySelector(".color");
+const rainbowButton = document.querySelector(".rainbow");
+const eraseButton=document.querySelector(".erase")
+const fillButton = document.querySelector(".fill");
+const clearButton = document.querySelector(".clear");
 function clear() {
 	grid.textContent = "";
 }
