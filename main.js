@@ -33,7 +33,7 @@ function initialize() {
 	changeSizeViewer(size.value);
 	makeGrid(size.valueAsNumber);
 	pixels = document.querySelectorAll(".pixel");
-	paint()
+	paint();
 }
 //called the function
 initialize();
@@ -41,63 +41,78 @@ initialize();
 //added an event listener to detect ant change to the size
 size.addEventListener("input", () => {
 	clear();
-	initialize()
+	initialize();
 });
 
 // a variable to know what to do when starting to draw
 let state = "color";
 
-colorButton.addEventListener("click", () => {
-	state = "color";
-	selectedColor = colorSelector.value;
+//a function to return all colors to default
+function noButtonSelected() {
+	buttons.forEach((button) => {
+		button.style.backgroundColor = "aqua";
+	});
+}
+
+buttons.forEach((button) => {
+	button.addEventListener("click", () => {
+		if(button.className!="clear"){
+			state = button.className;
+			button.style.backgroundColor = "aliceblue";
+			noButtonSelected();
+
+		}
+	});
 });
 
+colorButton.addEventListener("click", () => {
+	selectedColor = colorSelector.value;
+});
 rainbowButton.addEventListener("click", () => {
-	state = "rainbow";
 	selectedColor = generateColor();
 });
 
 fillButton.addEventListener("click", () => {
-	state = "fill";
 	selectedColor = colorSelector.value;
 });
-eraseButton.addEventListener('click',()=>{
-	state='erase'
-	selectedColor='#ffffff'
-})
-clearButton.addEventListener('click',()=>{
+eraseButton.addEventListener("click", () => {
+	selectedColor = "#ffffff";
+});
+clearButton.addEventListener("click", () => {
 	clearAll();
-})
-function paint(){
+});
+function paint() {
 	let isMouseDown = false;
-		pixels.forEach((pixel) => {
-			pixel.addEventListener("mousedown", (e) => {
-				isMouseDown = true;
-				if(state=='fill'){fillPixels()}
-				else if(state=='rainbow'){selectedColor=generateColor()}
-				e.target.style.backgroundColor=`${selectedColor}`
-			});
+	pixels.forEach((pixel) => {
+		pixel.addEventListener("mousedown", (e) => {
+			isMouseDown = true;
+			if (state == "fill") {
+				fillPixels();
+			} else if (state == "rainbow") {
+				selectedColor = generateColor();
+			}
+			e.target.style.backgroundColor = `${selectedColor}`;
 		});
-		pixels.forEach((pixel) => {
-			pixel.addEventListener("mouseup", () => {
-				isMouseDown = false;
-			});
+	});
+	pixels.forEach((pixel) => {
+		pixel.addEventListener("mouseup", () => {
+			isMouseDown = false;
 		});
-		pixels.forEach((pixel) => {
-			pixel.addEventListener("mouseover", (e) => {
-				if (isMouseDown) {
-					if (state == "color") {
-						e.target.style.backgroundColor = `${selectedColor}`;
-					} else if (state == "erase") {
-						e.target.style.backgroundColor = `#ffffff`;
-					} else if (state == "rainbow") {
-						e.target.style.backgroundColor = generateColor();
-					}
+	});
+	pixels.forEach((pixel) => {
+		pixel.addEventListener("mouseover", (e) => {
+			if (isMouseDown) {
+				if (state == "color") {
+					e.target.style.backgroundColor = `${selectedColor}`;
+				} else if (state == "erase") {
+					e.target.style.backgroundColor = `#ffffff`;
+				} else if (state == "rainbow") {
+					e.target.style.backgroundColor = generateColor();
 				}
-			});
+			}
 		});
+	});
 }
-
 
 function fillPixels() {
 	pixels.forEach((pixel) => {
