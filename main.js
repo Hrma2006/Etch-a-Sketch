@@ -5,7 +5,12 @@ let pixels = document.querySelectorAll(".pixel");
 let colorSelector = document.querySelector("#color-selector");
 let selectedColor;
 let sizeViewer = document.querySelector("p");
-
+const colorButton = document.querySelector(".color");
+const shadeButton = document.querySelector(".shade");
+const rainbowButton = document.querySelector(".rainbow");
+const eraseButton = document.querySelector(".erase");
+const fillButton = document.querySelector(".fill");
+const clearButton = document.querySelector(".clear");
 function clear() {
 	grid.textContent = "";
 }
@@ -28,7 +33,7 @@ function initialize() {
 	changeSizeViewer(size.value);
 	makeGrid(size.valueAsNumber);
 	pixels = document.querySelectorAll(".pixel");
-	paint();
+	paint()
 }
 //called the function
 initialize();
@@ -36,72 +41,64 @@ initialize();
 //added an event listener to detect ant change to the size
 size.addEventListener("input", () => {
 	clear();
-	changeSizeViewer(size.value);
-	makeGrid(size.valueAsNumber);
-	//called pixels again to update it
-	pixels = document.querySelectorAll(".pixel");
-	paint();
+	initialize()
 });
 
 // a variable to know what to do when starting to draw
 let state = "color";
 
-//change the state according to the class of the pressed button
-buttons.forEach((button) => {
-	button.addEventListener("click", (e) => {
-		state = e.target.className;
-		noButtonSelected();
-		e.target.style.backgroundColor = "blue";
-	});
-});
-
-function noButtonSelected() {
-	buttons.forEach((button) => {
-		button.style.backgroundColor = "aqua";
-	});
-}
-// an event listener to change the selected color when you enter a new color
-colorSelector.addEventListener("input", () => {
+colorButton.addEventListener("click", () => {
+	state = "color";
 	selectedColor = colorSelector.value;
-	console.log(selectedColor);
 });
 
-// a function to paint
-function paint() {
+rainbowButton.addEventListener("click", () => {
+	state = "rainbow";
+	selectedColor = generateColor();
+});
+
+fillButton.addEventListener("click", () => {
+	state = "fill";
+	selectedColor = colorSelector.value;
+});
+eraseButton.addEventListener('click',()=>{
+	state='erase'
+	selectedColor='#ffffff'
+})
+clearButton.addEventListener('click',()=>{
+	clearAll();
+})
+function paint(){
 	let isMouseDown = false;
-	pixels.forEach((pixel) => {
-		pixel.addEventListener("mousedown", (e) => {
-			isMouseDown = true;
-			if (state == "color") {
-				e.target.style.backgroundColor = `${selectedColor}`;
-			} else if (state == "erase") {
-				e.target.style.backgroundColor = `#ffffff`;
-			} else if (state == "fill") {
-				fillPixels();
-			} else if (state == "rainbow") {
-				e.target.style.backgroundColor = generateColor();
-			}
+		pixels.forEach((pixel) => {
+			pixel.addEventListener("mousedown", (e) => {
+				isMouseDown = true;
+				if(state=='fill'){fillPixels()}
+				else if(state=='rainbow'){selectedColor=generateColor()}
+				e.target.style.backgroundColor=`${selectedColor}`
+			});
 		});
-	});
-	pixels.forEach((pixel) => {
-		pixel.addEventListener("mouseup", () => {
-			isMouseDown = false;
+		pixels.forEach((pixel) => {
+			pixel.addEventListener("mouseup", () => {
+				isMouseDown = false;
+			});
 		});
-	});
-	pixels.forEach((pixel) => {
-		pixel.addEventListener("mouseover", (e) => {
-			if (isMouseDown) {
-				if (state == "color") {
-					e.target.style.backgroundColor = `${selectedColor}`;
-				} else if (state == "erase") {
-					e.target.style.backgroundColor = `#ffffff`;
-				} else if (state == "rainbow") {
-					e.target.style.backgroundColor = generateColor();
+		pixels.forEach((pixel) => {
+			pixel.addEventListener("mouseover", (e) => {
+				if (isMouseDown) {
+					if (state == "color") {
+						e.target.style.backgroundColor = `${selectedColor}`;
+					} else if (state == "erase") {
+						e.target.style.backgroundColor = `#ffffff`;
+					} else if (state == "rainbow") {
+						e.target.style.backgroundColor = generateColor();
+					}
 				}
-			}
+			});
 		});
-	});
 }
+
+
 function fillPixels() {
 	pixels.forEach((pixel) => {
 		pixel.style.backgroundColor = `${selectedColor}`;
@@ -117,9 +114,9 @@ function generateColor() {
 	return color.join("");
 }
 
-function clearAll(){
-pixels.forEach((pixel)=>{
-	pixel.style.backgroundColor= "#ffffff"
-})
-state=''
+function clearAll() {
+	pixels.forEach((pixel) => {
+		pixel.style.backgroundColor = "#ffffff";
+	});
+	state = "";
 }
