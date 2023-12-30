@@ -56,11 +56,10 @@ function noButtonSelected() {
 
 buttons.forEach((button) => {
 	button.addEventListener("click", () => {
-		if(button.className!="clear"){
+		if (button.className != "clear") {
 			state = button.className;
-			button.style.backgroundColor = "aliceblue";
 			noButtonSelected();
-
+			button.style.backgroundColor = "aliceblue";
 		}
 	});
 });
@@ -133,5 +132,4 @@ function clearAll() {
 	pixels.forEach((pixel) => {
 		pixel.style.backgroundColor = "#ffffff";
 	});
-	state = "";
 }
