@@ -13,6 +13,7 @@ body {
 		sans-serif;
 }
 .container {
+	background-color: aliceblue;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -49,7 +50,7 @@ button {
 	height: auto;
 }
 .color{
-	background-color: blue;
+	background-color:aliceblue;
 }
 .size-wrapper {
 	display: flex;
@@ -65,7 +66,7 @@ button {
 	grid-template-columns: repeat(2, 2fr);
 }
 .pixel {
-	background-color: lightblue;
+	background-color: rgb(255, 255, 255);
 	border: .1px solid rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 }
