@@ -38,6 +38,12 @@ function initialize() {
 //called the function
 initialize();
 
+//changing the color according to the colorSelector
+colorSelector.addEventListener("input",()=>{
+	selectedColor=colorSelector.value
+}
+)
+
 //added an event listener to detect ant change to the size
 size.addEventListener("input", () => {
 	clear();
