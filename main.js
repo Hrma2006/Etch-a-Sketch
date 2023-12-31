@@ -3,7 +3,7 @@ const size = document.querySelector("#size");
 const buttons = document.querySelectorAll("button");
 let pixels = document.querySelectorAll(".pixel");
 let colorSelector = document.querySelector("#color-selector");
-let selectedColor;
+let selectedColor = colorSelector.value;
 let sizeViewer = document.querySelector("p");
 const colorButton = document.querySelector(".color");
 const shadeButton = document.querySelector(".shade");
@@ -39,10 +39,10 @@ function initialize() {
 initialize();
 
 //changing the color according to the colorSelector
-colorSelector.addEventListener("input",()=>{
-	selectedColor=colorSelector.value
-}
-)
+colorSelector.addEventListener("input", () => {
+	selectedColor = colorSelector.value;
+	console.log(selectedColor);
+});
 
 //added an event listener to detect ant change to the size
 size.addEventListener("input", () => {
@@ -70,19 +70,6 @@ buttons.forEach((button) => {
 	});
 });
 
-colorButton.addEventListener("click", () => {
-	selectedColor = colorSelector.value;
-});
-rainbowButton.addEventListener("click", () => {
-	selectedColor = generateColor();
-});
-
-fillButton.addEventListener("click", () => {
-	selectedColor = colorSelector.value;
-});
-eraseButton.addEventListener("click", () => {
-	selectedColor = "#ffffff";
-});
 clearButton.addEventListener("click", () => {
 	clearAll();
 });
@@ -94,9 +81,12 @@ function paint() {
 			if (state == "fill") {
 				fillPixels();
 			} else if (state == "rainbow") {
-				selectedColor = generateColor();
+				e.target.style.backgroundColor = `${generateColor()}`;
+			} else if ((state == "color")) {
+				e.target.style.backgroundColor = `${selectedColor}`;
+			} else if ((state == "erase")) {
+				e.target.style.backgroundColor = `#ffffff`;
 			}
-			e.target.style.backgroundColor = `${selectedColor}`;
 		});
 	});
 	pixels.forEach((pixel) => {
@@ -110,7 +100,7 @@ function paint() {
 				if (state == "color") {
 					e.target.style.backgroundColor = `${selectedColor}`;
 				} else if (state == "erase") {
-					e.target.style.backgroundColor = `#ffffff`;
+					e.target.style.backgroundColor = `white`;
 				} else if (state == "rainbow") {
 					e.target.style.backgroundColor = generateColor();
 				}
